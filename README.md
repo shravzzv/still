@@ -1,50 +1,76 @@
-# Welcome to your Expo app 👋
+# Still
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Still is a deliberately minimal todos app built with React Native and Expo.
 
-## Get started
+The project exists to internalize first-principles mobile fundamentals — layout, interaction, state, and local persistence — without the noise of features, metrics, or optimization pressure.
 
-1. Install dependencies
+This is a learning root, not a product.
 
-   ```bash
-   npm install
-   ```
+## Why this exists
 
-2. Start the app
+I want a clear mental model for React Native that I can reuse confidently in future projects.
 
-   ```bash
-   npx expo start
-   ```
+Still is intentionally small so that:
 
-In the output, you'll find options to open the app in a
+- every UI decision is felt, not abstracted away
+- platform differences (RN vs web React) become obvious
+- the codebase stays calm and readable
+- “done” is reachable
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## What Still is
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- A single-screen todos app
+- Local-only persistence
+- Calm, touch-first interactions
+- Minimal visual language
+- No accounts, sync, or productivity mechanics
 
-## Get a fresh project
+## What Still is not
 
-When you're ready, run:
+- Not a task manager
+- Not a productivity system
+- Not a habit tracker
+- Not a framework or boilerplate
+- Not built for scale or distribution
 
-```bash
-npm run reset-project
-```
+If you’re looking for features, this is the wrong repo.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Scope
 
-## Learn more
+- Single primary screen (task list)
+- One flow for adding a task (modal)
+- Local-only persistence
+- System-driven light/dark theme
+- No settings screen
 
-To learn more about developing your project with Expo, look at the following resources:
+## Design philosophy
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+- Do less
+- Completion is relief
+- Empty is success
+- Nothing begs for attention
 
-## Join the community
+The UI is intentionally quiet.
 
-Join our community of developers creating universal apps.
+## Design system (minimal)
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Still uses a minimal, token-based design system expressed through NativeWind classes.
+
+There is no component library.
+
+Consistency is achieved through:
+
+- a small, fixed color palette (surface, primary text, muted text, accent)
+- a repeated spacing scale
+- a limited set of text styles (title, body, meta)
+
+Components are only extracted when visual or behavioral variation appears.
+
+## Tech stack
+
+- React Native
+- Expo
+- TypeScript
+- NativeWind
+- Jest (unit tests)
+- E2E testing (minimal, one happy path)
