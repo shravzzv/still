@@ -1,0 +1,19 @@
+# # appId: com.shravzzv.still
+# appId: host.exp.exponent
+# ---
+# # - launchApp
+# - assertVisible: 'Still water'
+
+appId: host.exp.exponent
+---
+- assertVisible: 'Still like water'
+
+- tapOn: 'Still like water'
+
+- swipe:
+    start: 50%,80%
+    end: 50%,20%
+
+- swipe:
+    start: 50%,20%
+    end: 50%,80%
