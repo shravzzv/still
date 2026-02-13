@@ -1,9 +1,12 @@
 # .eas\workflows\create-production-builds.yml
 name: Create Production Builds
 
+# on:
+#   push:
+#     branches: ['main']
 on:
-  push:
-    branches: ['main']
+  workflow_dispatch: {}
+# keeping e2e tests on CI dormant provisionally
 
 jobs:
   build_android:
