@@ -17,6 +17,7 @@
     "e2e": "cross-env APP_ID=host.exp.exponent maestro test .maestro"
   },
   "dependencies": {
+    "@expo-google-fonts/inter": "^0.4.2",
     "@expo/vector-icons": "^15.0.3",
     "@react-navigation/bottom-tabs": "^7.4.0",
     "@react-navigation/elements": "^2.6.3",

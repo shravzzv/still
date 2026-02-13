@@ -43,6 +43,16 @@
             "backgroundColor": "#000000"
           }
         }
+      ],
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "node_modules/@expo-google-fonts/inter/900Black/Inter_900Black.ttf",
+            "node_modules/@expo-google-fonts/inter/600SemiBold/Inter_600SemiBold.ttf",
+            "node_modules/@expo-google-fonts/inter/900Black/Inter_900Black.ttf"
+          ]
+        }
       ]
     ],
     "experiments": {
