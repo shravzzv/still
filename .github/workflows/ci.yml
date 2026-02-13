@@ -1,0 +1,35 @@
+# CI should never modify files
+name: CI
+permissions:
+  contents: read
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint:ci
+
+      - name: Check formatting
+        run: npm run format:ci
+
+      - name: Run unit + integration tests
+        run: npm test

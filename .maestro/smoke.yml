@@ -1,0 +1,12 @@
+appId: ${APP_ID}
+---
+- assertVisible: 'Still water'
+- tapOn: 'Still water'
+
+- swipe:
+    start: 50%,80%
+    end: 50%,20%
+
+- swipe:
+    start: 50%,20%
+    end: 50%,80%

@@ -1,3 +1,4 @@
+// app.json
 {
   "expo": {
     "name": "still",
@@ -9,9 +10,11 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.shravzzv.still"
     },
     "android": {
+      "package": "com.shravzzv.still",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
@@ -23,7 +26,9 @@
     },
     "web": {
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/favicon.png",
+      "bundler": "metro",
+      "name": "Still"
     },
     "plugins": [
       "expo-router",
@@ -43,6 +48,19 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "003893b4-4ff6-4983-92f6-660f265ad860"
+      }
+    },
+    "owner": "shravzzv",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/003893b4-4ff6-4983-92f6-660f265ad860"
     }
   }
 }
