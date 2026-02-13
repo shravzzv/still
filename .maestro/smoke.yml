@@ -6,9 +6,9 @@
 
 appId: host.exp.exponent
 ---
-- assertVisible: 'Still like water'
+- assertVisible: 'Still water'
 
-- tapOn: 'Still like water'
+- tapOn: 'Still water'
 
 - swipe:
     start: 50%,80%
