@@ -1,5 +1,10 @@
 import '@/global.css'
-import { Inter_900Black, useFonts } from '@expo-google-fonts/inter'
+import {
+  Inter_400Regular,
+  Inter_600SemiBold,
+  Inter_900Black,
+  useFonts,
+} from '@expo-google-fonts/inter'
 import { Stack } from 'expo-router'
 import * as SplashScreen from 'expo-splash-screen'
 import { useEffect } from 'react'
@@ -8,6 +13,8 @@ SplashScreen.preventAutoHideAsync()
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
+    Inter_400Regular,
+    Inter_600SemiBold,
     Inter_900Black,
   })
 

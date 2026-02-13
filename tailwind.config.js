@@ -13,9 +13,9 @@ module.exports = {
         border: '#E5E7EB',
       },
       fontFamily: {
-        inter: ['Inter_400Regular'],
-        'inter-semibold': ['Inter_600SemiBold'],
-        'inter-black': ['Inter_900Black'],
+        sans: ['Inter_400Regular'],
+        medium: ['Inter_600SemiBold'],
+        bold: ['Inter_900Black'],
       },
     },
   },
