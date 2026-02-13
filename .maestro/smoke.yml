@@ -1,13 +1,6 @@
-# # appId: com.shravzzv.still
-# appId: host.exp.exponent
-# ---
-# # - launchApp
-# - assertVisible: 'Still water'
-
-appId: host.exp.exponent
+appId: ${APP_ID}
 ---
 - assertVisible: 'Still water'
-
 - tapOn: 'Still water'
 
 - swipe:

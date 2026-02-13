@@ -14,7 +14,7 @@
     "format:ci": "prettier . --check",
     "test": "jest",
     "test:watch": "jest --watchAll",
-    "e2e": "maestro test .maestro"
+    "e2e": "cross-env APP_ID=host.exp.exponent maestro test .maestro"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.3",
@@ -55,6 +55,7 @@
     "@testing-library/react-native": "^13.3.3",
     "@types/jest": "^29.5.14",
     "@types/react": "~19.1.0",
+    "cross-env": "^10.1.0",
     "eslint": "^9.39.2",
     "eslint-config-expo": "~10.0.0",
     "eslint-import-resolver-typescript": "^4.4.4",

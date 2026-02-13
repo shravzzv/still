@@ -1,4 +1,8 @@
+# .eas\workflows\create-development-builds.yml
 name: Create development builds
+
+# runs manually
+# eas workflow:run .eas/workflows/create-development-builds.yml
 
 jobs:
   android_development_build:
