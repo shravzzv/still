@@ -1,4 +1,4 @@
-// constants\styling.ts
+// constants/styling.ts
 
 export const colors = {
   surface: '#F6F4EF',

@@ -2,13 +2,14 @@ import AddTaskAction from '@/components/add-task-action'
 import { colors, typography } from '@/constants/styling'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 import { Tabs } from 'expo-router'
+import { View } from 'react-native'
 
 export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: '#111827',
         headerShown: true,
+        tabBarActiveTintColor: colors.primary,
         headerStyle: {
           backgroundColor: colors.surface,
         },
@@ -23,7 +24,11 @@ export default function TabLayout() {
         options={{
           title: 'Home',
           headerTitle: 'Still',
-          headerRight: () => <AddTaskAction />,
+          headerRight: () => (
+            <View className="mr-4">
+              <AddTaskAction />
+            </View>
+          ),
           tabBarIcon: ({ color }) => (
             <FontAwesome size={28} name="home" color={color} />
           ),
@@ -44,6 +49,5 @@ export default function TabLayout() {
 }
 
 /**
- * ! The app completely occupies the phone's top area where it shows batter, etc. Is this okay?
- * ? what could be a DRY way to set these styles?
+ *
  */
