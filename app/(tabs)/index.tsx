@@ -9,8 +9,8 @@ export default function Page() {
   const isEmpty = tasks.length === 0
 
   return (
-    <SafeAreaView className="flex-1">
-      <View className="flex-1 px-8 py-0 md:px-8 md:py-8">
+    <SafeAreaView className="flex-1 bg-surface dark:bg-surface-dark">
+      <View className="flex-1 bg-surface px-8 py-0 text-surface-foreground dark:bg-surface-dark dark:text-surface-foreground-dark md:px-8 md:py-8">
         {isEmpty && <EmptyTasksState />}
       </View>
     </SafeAreaView>

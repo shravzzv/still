@@ -1,3 +1,4 @@
+import { cn } from '@/lib/utils'
 import { Text as RNText, TextProps as RNTextProps } from 'react-native'
 
 type TextProps = RNTextProps & {
@@ -16,7 +17,10 @@ type TextProps = RNTextProps & {
 export function Text({ className, ...props }: TextProps) {
   return (
     <RNText
-      className={['font-sans text-base', className].filter(Boolean).join(' ')}
+      className={cn(
+        'font-sans text-base text-surface-foreground dark:text-surface-foreground-dark',
+        className,
+      )}
       {...props}
     />
   )

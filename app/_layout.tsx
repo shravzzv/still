@@ -7,7 +7,9 @@ import {
 } from '@expo-google-fonts/inter'
 import { Stack } from 'expo-router'
 import * as SplashScreen from 'expo-splash-screen'
+import { useColorScheme } from 'nativewind'
 import { useEffect } from 'react'
+import { View } from 'react-native'
 
 SplashScreen.preventAutoHideAsync()
 
@@ -17,6 +19,7 @@ export default function RootLayout() {
     Inter_600SemiBold,
     Inter_900Black,
   })
+  const { colorScheme } = useColorScheme()
 
   useEffect(() => {
     if (loaded || error) {
@@ -29,8 +32,15 @@ export default function RootLayout() {
   }
 
   return (
-    <Stack>
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-    </Stack>
+    <View className={colorScheme === 'dark' ? 'dark' : ''} style={{ flex: 1 }}>
+      <Stack>
+        <Stack.Screen
+          name="(tabs)"
+          options={{
+            headerShown: false,
+          }}
+        />
+      </Stack>
+    </View>
   )
 }

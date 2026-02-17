@@ -1,21 +1,31 @@
 import AddTaskAction from '@/components/add-task-action'
-import { colors, typography } from '@/constants/styling'
+import { typography } from '@/constants/styling'
+import { useTheme } from '@/hooks/use-theme'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 import { Tabs } from 'expo-router'
 import { View } from 'react-native'
 
 export default function TabLayout() {
+  const { colors } = useTheme()
+
   return (
     <Tabs
       screenOptions={{
         headerShown: true,
+        headerTitleAlign: 'center',
+        headerShadowVisible: false,
         tabBarActiveTintColor: colors.primary,
         headerStyle: {
           backgroundColor: colors.surface,
         },
-        headerTitleStyle: { fontFamily: typography.heading, fontSize: 20 },
         tabBarStyle: {
+          borderTopWidth: 0,
           backgroundColor: colors.surface,
+        },
+        headerTitleStyle: {
+          fontSize: 20,
+          color: colors.primary,
+          fontFamily: typography.heading,
         },
       }}
     >

@@ -11,12 +11,12 @@ type ButtonProps = PressableProps & {
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
-  primary: 'bg-primary active:opacity-80 hover:bg-primary/80',
-  ghost: 'hover:bg-muted active:bg-muted',
+  primary: 'bg-primary dark:bg-primary-dark',
+  ghost: '',
 }
 
 const sizeStyles: Record<ButtonSize, string> = {
-  sm: 'px-2 py-1',
+  sm: 'px-4 py-1',
   md: 'px-4 py-1.5',
   lg: 'px-6 py-2',
 }
