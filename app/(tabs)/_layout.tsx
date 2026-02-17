@@ -1,12 +1,12 @@
 import AddTaskAction from '@/components/add-task-action'
 import { typography } from '@/constants/styling'
-import { useTheme } from '@/hooks/use-theme'
+import { useThemeContext } from '@/providers/theme-provider'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 import { Tabs } from 'expo-router'
 import { View } from 'react-native'
 
 export default function TabLayout() {
-  const { colors } = useTheme()
+  const { colors } = useThemeContext()
 
   return (
     <Tabs

@@ -1,41 +1,37 @@
+/**
+ * Theme preference selected by the user.
+ *
+ * - 'light'  → forces light appearance
+ * - 'dark'   → forces dark appearance
+ * - 'system' → follows OS theme automatically
+ */
+export type ThemeMode = 'light' | 'dark' | 'system'
+
 export interface UseThemeResult {
   /**
-   * Current theme mode selected by the user.
+   * Current theme preference selected by the user.
    *
-   * - 'system' → follows OS appearance
-   * - 'light'  → forces light theme
-   * - 'dark'   → forces dark theme
-   *
-   * Use this when building settings UI or displaying
-   * the current preference.
+   * This reflects the chosen mode, not the resolved palette.
    */
-  theme: 'light' | 'dark' | 'system'
+  theme: ThemeMode
 
   /**
-   * Resolved color tokens for the active palette.
+   * Resolved semantic color tokens.
    *
-   * Always returns either the light or dark theme object,
-   * regardless of whether `mode` is 'system'.
+   * Always corresponds to either the light or dark palette,
+   * even when `theme` is 'system'.
    *
-   * Prefer this for:
+   * Use this for:
    * - navigation styling
    * - inline JS styles
    */
   colors: Record<string, string>
 
   /**
-   * Updates the theme mode.
+   * Updates the theme preference.
    *
-   * Persists automatically and updates NativeWind
-   * so `dark:` classes react immediately.
+   * Persists automatically and updates NativeWind so
+   * `dark:` classes react immediately.
    */
-  changeTheme: (theme: 'light' | 'dark' | 'system') => void
-
-  /**
-   * Toggles between light and dark modes.
-   *
-   * If the current mode is 'system', this will switch
-   * to an explicit theme based on the resolved palette.
-   */
-  toggleTheme: () => void
+  updateTheme: (theme: ThemeMode) => void
 }

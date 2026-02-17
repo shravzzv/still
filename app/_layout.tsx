@@ -1,4 +1,5 @@
 import '@/global.css'
+import ThemeProvider from '@/providers/theme-provider'
 import {
   Inter_400Regular,
   Inter_600SemiBold,
@@ -32,15 +33,20 @@ export default function RootLayout() {
   }
 
   return (
-    <View className={colorScheme === 'dark' ? 'dark' : ''} style={{ flex: 1 }}>
-      <Stack>
-        <Stack.Screen
-          name="(tabs)"
-          options={{
-            headerShown: false,
-          }}
-        />
-      </Stack>
-    </View>
+    <ThemeProvider>
+      <View
+        className={colorScheme === 'dark' ? 'dark' : ''}
+        style={{ flex: 1 }}
+      >
+        <Stack>
+          <Stack.Screen
+            name="(tabs)"
+            options={{
+              headerShown: false,
+            }}
+          />
+        </Stack>
+      </View>
+    </ThemeProvider>
   )
 }
