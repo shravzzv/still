@@ -32,4 +32,4 @@ jobs:
         run: npm run format:ci
 
       - name: Run unit + integration tests
-        run: npm test
+        run: npm run test:ci
