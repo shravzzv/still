@@ -12,7 +12,7 @@
     "lint:ci": "expo lint",
     "format": "prettier . --write",
     "format:ci": "prettier . --check",
-    "test": "jest",
+    "test": "jest --verbose",
     "test:watch": "jest --watchAll",
     "e2e": "cross-env APP_ID=host.exp.exponent maestro test .maestro"
   },
