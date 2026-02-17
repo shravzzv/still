@@ -1,25 +1,40 @@
+import { cn } from '@/lib/utils'
+import { cva, type VariantProps } from 'class-variance-authority'
 import { Pressable, PressableProps } from 'react-native'
 
-type ButtonVariant = 'primary' | 'ghost'
-type ButtonSize = 'sm' | 'md' | 'lg'
+/**
+ * Button Variants Definition
+ * Using CVA to manage the relationship between variant and size.
+ */
+const buttonVariants = cva(
+  'items-center justify-center flex-row rounded-xl', // Base styles
+  {
+    variants: {
+      variant: {
+        primary: 'bg-primary dark:bg-primary-dark active:opacity-80',
+        ghost: 'bg-transparent active:bg-muted/10',
+      },
+      size: {
+        sm: 'py-1 px-2',
+        md: 'px-5',
+        lg: 'px-8',
+      },
+    },
+    defaultVariants: {
+      variant: 'primary',
+      size: 'md',
+    },
+  },
+)
 
-type ButtonProps = PressableProps & {
-  children: React.ReactNode
-  className?: string
-  variant?: ButtonVariant
-  size?: ButtonSize
-}
+// Extract types directly from the CVA definition
+type ButtonCvaProps = VariantProps<typeof buttonVariants>
 
-const variantStyles: Record<ButtonVariant, string> = {
-  primary: 'bg-primary dark:bg-primary-dark',
-  ghost: '',
-}
-
-const sizeStyles: Record<ButtonSize, string> = {
-  sm: 'px-4 py-1',
-  md: 'px-4 py-1.5',
-  lg: 'px-6 py-2',
-}
+type ButtonProps = PressableProps &
+  ButtonCvaProps & {
+    children: React.ReactNode
+    className?: string
+  }
 
 /**
  * Button
@@ -27,35 +42,17 @@ const sizeStyles: Record<ButtonSize, string> = {
  * Base interactive surface for Still.
  * Wraps React Native `Pressable` and applies default layout,
  * spacing, and visual styling using NativeWind tokens.
- *
- * This component is intentionally minimal:
- * - Does not enforce typography (compose with `Text`).
- * - Accepts arbitrary children for flexible layouts.
- *
- * Props:
- * - `variant` controls visual tone (e.g. primary, subtle).
- * - `size` controls padding and density.
- *
- * Prefer this over raw `Pressable` for consistent interaction
- * styling across the app.
  */
 export function Button({
   children,
   className,
-  variant = 'primary',
-  size = 'md',
+  variant,
+  size,
   ...props
 }: ButtonProps) {
   return (
     <Pressable
-      className={[
-        'items-center justify-center rounded-xl',
-        variantStyles[variant],
-        sizeStyles[size],
-        className,
-      ]
-        .filter(Boolean)
-        .join(' ')}
+      className={cn(buttonVariants({ variant, size }), className)}
       {...props}
     >
       {children}

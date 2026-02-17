@@ -1,37 +1,39 @@
 import { Button } from '@/components/ui/button'
-import { Text } from '@/components/ui/text'
-import { useTheme } from '@/hooks/use-theme'
+import { useThemeContext } from '@/providers/theme-provider'
+import type { ThemeMode } from '@/types/use-theme'
+import { Monitor, Moon, Sun } from 'lucide-react-native'
 import { View } from 'react-native'
 
-type Mode = 'light' | 'dark' | 'system'
-const modes: Mode[] = ['light', 'dark', 'system']
+const modes: { mode: ThemeMode; Icon: any }[] = [
+  { mode: 'light', Icon: Sun },
+  { mode: 'dark', Icon: Moon },
+  { mode: 'system', Icon: Monitor },
+]
 
 export default function ThemeToggle() {
-  const { theme, updateTheme } = useTheme()
+  const { theme, updateTheme, colors } = useThemeContext()
 
   return (
-    <View className="mx-auto w-max flex-row items-center justify-center gap-2 rounded-xl border border-border p-1 px-4 py-2 dark:border-border-dark">
-      <Text>Theme:</Text>
-
-      {modes.map((mode) => {
-        const active = theme === mode
-
+    <View className="mx-auto flex-row rounded-xl border border-border p-1 dark:border-border-dark">
+      {modes.map(({ mode, Icon }) => {
+        const isActive = theme === mode
         return (
           <Button
             key={mode}
-            variant={active ? 'primary' : 'ghost'}
+            variant={isActive ? 'primary' : 'ghost'}
             size="sm"
+            className="px-3"
             onPress={() => updateTheme(mode)}
+            testID={`theme-${mode}`}
+            accessibilityRole="button"
+            accessibilityState={{ selected: isActive }}
           >
-            <Text
-              className={
-                active
-                  ? 'text-primary-foreground dark:text-primary-foreground-dark'
-                  : undefined
+            <Icon
+              size={16}
+              color={
+                isActive ? colors.primaryForeground : colors.surfaceForeground
               }
-            >
-              {mode}
-            </Text>
+            />
           </Button>
         )
       })}
