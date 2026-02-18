@@ -14,7 +14,7 @@ export default function TaskRow({ task, complete }: TaskRowProps) {
   const { colors } = useThemeContext()
 
   return (
-    <View className="bg-surface-elevated dark:bg-surface-elevated-dark flex-row items-center gap-4 rounded-xl p-4">
+    <View className="flex-row items-center gap-4 rounded-xl bg-surface-elevated p-4 dark:bg-surface-elevated-dark">
       <Button
         variant="ghost"
         className="shrink-0 cursor-pointer p-0"
