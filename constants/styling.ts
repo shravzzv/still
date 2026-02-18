@@ -10,6 +10,7 @@ export const themes = {
   light: {
     surface: '#F6F4EF',
     surfaceForeground: '#111827',
+    surfaceElevated: 'rgba(111,129,150,0.12)',
     primary: '#111827',
     primaryForeground: '#FFFFFF',
     muted: '#6B7280',
@@ -19,6 +20,7 @@ export const themes = {
   dark: {
     surface: '#0B0B0C',
     surfaceForeground: '#F9FAFB',
+    surfaceElevated: 'rgba(143,162,183,0.16)',
     primary: '#F9FAFB',
     primaryForeground: '#0B0B0C',
     muted: '#9CA3AF',
@@ -47,6 +49,9 @@ export const tailwind = {
 
     'surface-foreground': themes.light.surfaceForeground,
     'surface-foreground-dark': themes.dark.surfaceForeground,
+
+    'surface-elevated': themes.light.surfaceElevated,
+    'surface-elevated-dark': themes.dark.surfaceElevated,
 
     primary: themes.light.primary,
     'primary-dark': themes.dark.primary,

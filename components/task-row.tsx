@@ -1,0 +1,36 @@
+import { useThemeContext } from '@/providers/theme-provider'
+import type { Task } from '@/types/task'
+import { Circle, CircleCheckBig } from 'lucide-react-native'
+import { View } from 'react-native'
+import { Button } from './ui/button'
+import { Text } from './ui/text'
+
+interface TaskRowProps {
+  task: Task
+  complete: () => void
+}
+
+export default function TaskRow({ task, complete }: TaskRowProps) {
+  const { colors } = useThemeContext()
+
+  return (
+    <View className="bg-surface-elevated dark:bg-surface-elevated-dark flex-row items-center gap-4 rounded-xl p-4">
+      <Button
+        variant="ghost"
+        className="shrink-0 cursor-pointer p-0"
+        onPress={complete}
+        accessibilityRole="button"
+      >
+        {task.completed ? (
+          <CircleCheckBig color={colors.surfaceForeground} size={24} />
+        ) : (
+          <Circle color={colors.surfaceForeground} size={24} />
+        )}
+      </Button>
+
+      <Text className={`${task.completed && 'line-through opacity-50'} flex-1`}>
+        {task.title}
+      </Text>
+    </View>
+  )
+}
