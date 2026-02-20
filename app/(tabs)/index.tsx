@@ -20,7 +20,7 @@ const intialState: Task[] = [
 export default function Page() {
   const [tasks, setTasks] = useState<Task[]>(intialState)
 
-  const completeTask = (id: string) => {
+  const toggleComplete = (id: string) => {
     setTasks((prev) =>
       prev.map((task) =>
         task.id === id ? { ...task, completed: !task.completed } : task,
@@ -39,7 +39,7 @@ export default function Page() {
         renderItem={(task) => (
           <TaskRow
             task={task.item}
-            complete={() => completeTask(task.item.id)}
+            toggleComplete={() => toggleComplete(task.item.id)}
           />
         )}
       />
