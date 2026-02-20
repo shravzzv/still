@@ -23,7 +23,7 @@ export default function ThemeProvider({ children }: ThemeProviderProps) {
 /**
  * Consumer hook for accessing global theme state.
  *
- * @throws if used outside ThemeProvider to prevent silent bugs.
+ * @throws if used outside `ThemeProvider` to prevent silent bugs.
  */
 export const useThemeContext = () => {
   const context = useContext(ThemeContext)

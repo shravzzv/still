@@ -74,6 +74,7 @@ export function useTheme(): UseThemeResult {
   return {
     theme,
     colors,
+    colorScheme,
     updateTheme,
   }
 }

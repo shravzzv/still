@@ -7,11 +7,7 @@ export default function AddTaskAction() {
   }
 
   return (
-    <Text
-      className="cursor-pointer font-medium text-primary"
-      onPress={handleAdd}
-    >
-      Add
+          className={`h-full w-full items-center justify-center px-8 backdrop-blur-lg ${colorScheme === 'dark' && 'dark'}`}
     </Text>
   )
 }
