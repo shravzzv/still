@@ -16,6 +16,8 @@ export const themes = {
     muted: '#6B7280',
     accent: '#6F8196',
     border: '#E5E7EB',
+    destructive: '#DC2626',
+    destructiveForeground: '#FFFFFF',
   },
   dark: {
     surface: '#0B0B0C',
@@ -26,6 +28,8 @@ export const themes = {
     muted: '#9CA3AF',
     accent: '#8FA2B7',
     border: '#27272A',
+    destructive: '#EF4444',
+    destructiveForeground: '#0B0B0C',
   },
 } as const
 
@@ -67,6 +71,12 @@ export const tailwind = {
 
     border: themes.light.border,
     'border-dark': themes.dark.border,
+
+    destructive: themes.light.destructive,
+    'destructive-dark': themes.dark.destructive,
+
+    'destructive-foreground': themes.light.destructiveForeground,
+    'destructive-foreground-dark': themes.dark.destructiveForeground,
   },
 
   fontFamily: {
