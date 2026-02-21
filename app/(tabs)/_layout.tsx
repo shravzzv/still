@@ -1,8 +1,8 @@
 import AddTaskAction from '@/components/add-task-action'
 import { typography } from '@/constants/styling'
 import { useThemeContext } from '@/providers/theme-provider'
-import FontAwesome from '@expo/vector-icons/FontAwesome'
 import { Tabs } from 'expo-router'
+import { Home, Settings } from 'lucide-react-native'
 import { View } from 'react-native'
 
 export default function TabLayout() {
@@ -39,9 +39,7 @@ export default function TabLayout() {
               <AddTaskAction />
             </View>
           ),
-          tabBarIcon: ({ color }) => (
-            <FontAwesome size={28} name="home" color={color} />
-          ),
+          tabBarIcon: ({ color }) => <Home size={28} color={color} />,
         }}
       />
 
@@ -49,9 +47,7 @@ export default function TabLayout() {
         name="settings"
         options={{
           title: 'Settings',
-          tabBarIcon: ({ color }) => (
-            <FontAwesome size={28} name="cog" color={color} />
-          ),
+          tabBarIcon: ({ color }) => <Settings size={28} color={color} />,
         }}
       />
     </Tabs>

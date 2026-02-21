@@ -28,6 +28,18 @@ export interface UseThemeResult {
   colors: Record<string, string>
 
   /**
+   * The actual visual state currently rendered on the device.
+   * This value is native to nativewind.
+   * Unlike `theme`, this is never 'system'. It resolves to 'light' or 'dark'
+   * based on the user's preference AND the OS setting.
+   *
+   * Use this for:
+   * - Conditional logic in JS (e.g., re-injecting 'dark' classes in Modals)
+   * - Determining which variant of a component to render manually
+   */
+  colorScheme: 'light' | 'dark' | undefined
+
+  /**
    * Updates the theme preference.
    *
    * Persists automatically and updates NativeWind so

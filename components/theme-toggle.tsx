@@ -20,7 +20,7 @@ export default function ThemeToggle() {
         return (
           <Button
             key={mode}
-            variant={isActive ? 'primary' : 'ghost'}
+            variant={isActive ? 'default' : 'ghost'}
             size="sm"
             className="px-3"
             onPress={() => updateTheme(mode)}

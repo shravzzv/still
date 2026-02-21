@@ -7,21 +7,27 @@ import { Pressable, PressableProps } from 'react-native'
  * Using CVA to manage the relationship between variant and size.
  */
 const buttonVariants = cva(
-  'items-center justify-center flex-row rounded-xl', // Base styles
+  'items-center justify-center flex-row rounded-xl active:opacity-80 hover:opacity-80', // Base styles
   {
     variants: {
       variant: {
-        primary: 'bg-primary dark:bg-primary-dark active:opacity-80',
+        default: 'bg-primary dark:bg-primary-dark',
+        outline:
+          'bg-transparent border border-border dark:border-border-dark active:bg-muted/10',
+        secondary:
+          'bg-surface-elevated dark:bg-surface-elevated-dark border border-border dark:border-border-dark',
         ghost: 'bg-transparent active:bg-muted/10',
+        destructive:
+          'bg-destructive dark:bg-destructive-dark active:opacity-80',
       },
       size: {
         sm: 'py-1 px-2',
-        md: 'px-5',
-        lg: 'px-8',
+        md: 'py-1.5 px-3',
+        lg: 'py-2 px-5',
       },
     },
     defaultVariants: {
-      variant: 'primary',
+      variant: 'default',
       size: 'md',
     },
   },

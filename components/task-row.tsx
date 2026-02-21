@@ -7,10 +7,10 @@ import { Text } from './ui/text'
 
 interface TaskRowProps {
   task: Task
-  complete: () => void
+  toggleComplete: () => void
 }
 
-export default function TaskRow({ task, complete }: TaskRowProps) {
+export default function TaskRow({ task, toggleComplete }: TaskRowProps) {
   const { colors } = useThemeContext()
 
   return (
@@ -18,7 +18,7 @@ export default function TaskRow({ task, complete }: TaskRowProps) {
       <Button
         variant="ghost"
         className="shrink-0 cursor-pointer p-0"
-        onPress={complete}
+        onPress={toggleComplete}
         accessibilityRole="button"
       >
         {task.completed ? (
