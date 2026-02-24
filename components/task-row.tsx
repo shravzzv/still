@@ -1,7 +1,7 @@
 import { useThemeContext } from '@/providers/theme-provider'
 import type { Task } from '@/types/task'
-import { Circle, CircleCheckBig } from 'lucide-react-native'
-import { Pressable } from 'react-native'
+import { Circle, CircleCheckBig, Pen } from 'lucide-react-native'
+import { Platform, Pressable, View } from 'react-native'
 import { Button } from './ui/button'
 import { Text } from './ui/text'
 
@@ -39,6 +39,19 @@ export default function TaskRow({
       <Text className={`${task.completed && 'line-through opacity-50'} flex-1`}>
         {task.title}
       </Text>
+
+      {Platform.OS === 'web' && (
+        <View className="shrink-0">
+          <Button
+            variant="ghost"
+            className="shrink-0 cursor-pointer p-0"
+            accessibilityRole="button"
+            onPress={onEdit}
+          >
+            <Pen color={colors.surfaceForeground} size={20} />
+          </Button>
+        </View>
+      )}
     </Pressable>
   )
 }
