@@ -1,9 +1,7 @@
-import AddTaskAction from '@/components/add-task-action'
 import { typography } from '@/constants/styling'
 import { useThemeContext } from '@/providers/theme-provider'
 import { Tabs } from 'expo-router'
 import { Home, Settings } from 'lucide-react-native'
-import { View } from 'react-native'
 
 export default function TabLayout() {
   const { colors } = useThemeContext()
@@ -34,11 +32,6 @@ export default function TabLayout() {
         options={{
           title: 'Home',
           headerTitle: 'Still',
-          headerRight: () => (
-            <View className="mr-4">
-              <AddTaskAction />
-            </View>
-          ),
           tabBarIcon: ({ color }) => <Home size={28} color={color} />,
         }}
       />

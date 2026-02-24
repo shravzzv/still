@@ -1,9 +1,11 @@
+import AddTaskAction from '@/components/add-task-action'
 import EmptyTasksState from '@/components/empty-tasks-state'
 import TaskRow from '@/components/task-row'
 import { Screen } from '@/components/ui/screen'
 import type { Task } from '@/types/task'
-import { useState } from 'react'
-import { FlatList } from 'react-native'
+import { useNavigation } from 'expo-router'
+import { useEffect, useState } from 'react'
+import { FlatList, View } from 'react-native'
 
 const intialState: Task[] = [
   ...Array.from({ length: 0 }, (_, i) => ({
@@ -19,6 +21,7 @@ const intialState: Task[] = [
 
 export default function Page() {
   const [tasks, setTasks] = useState<Task[]>(intialState)
+  const navigation = useNavigation()
 
   const toggleComplete = (id: string) => {
     setTasks((prev) =>
@@ -27,6 +30,16 @@ export default function Page() {
       ),
     )
   }
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <View className="mr-4">
+          <AddTaskAction />
+        </View>
+      ),
+    })
+  }, [navigation])
 
   return (
     <Screen>
