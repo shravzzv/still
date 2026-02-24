@@ -1,9 +1,12 @@
 # .eas\workflows\publish-preview-update.yml
 name: Publish preview update
 
+# on:
+#   push:
+#     branches: ['*']
 on:
-  push:
-    branches: ['*']
+  workflow_dispatch: {}
+# marking this dormant due to expo free plan limits
 
 jobs:
   publish_preview_update:
