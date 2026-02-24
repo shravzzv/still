@@ -15,6 +15,7 @@ const mockedTask: Task = {
 }
 
 const toggleCompleteMock = jest.fn()
+const onEditMock = jest.fn()
 
 describe('TaskRow', () => {
   beforeEach(() => {
@@ -29,7 +30,11 @@ describe('TaskRow', () => {
 
   it('shows a title and an action button', () => {
     const { getByText, getByRole } = render(
-      <TaskRow task={mockedTask} toggleComplete={toggleCompleteMock} />,
+      <TaskRow
+        task={mockedTask}
+        toggleComplete={toggleCompleteMock}
+        onEdit={onEditMock}
+      />,
     )
 
     expect(getByText(mockedTask.title)).toBeTruthy()
@@ -38,7 +43,11 @@ describe('TaskRow', () => {
 
   it('calls the `complete` function on pressing the action button', () => {
     const { getByRole } = render(
-      <TaskRow task={mockedTask} toggleComplete={toggleCompleteMock} />,
+      <TaskRow
+        task={mockedTask}
+        toggleComplete={toggleCompleteMock}
+        onEdit={onEditMock}
+      />,
     )
 
     const button = getByRole('button')
