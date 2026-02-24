@@ -4,7 +4,7 @@ import TaskRow from '@/components/task-row'
 import { Screen } from '@/components/ui/screen'
 import type { Task } from '@/types/task'
 import { useNavigation } from 'expo-router'
-import { useEffect, useState } from 'react'
+import { useLayoutEffect, useState } from 'react'
 import { FlatList, View } from 'react-native'
 
 const intialState: Task[] = [
@@ -31,7 +31,7 @@ export default function Page() {
     )
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
         <View className="mr-4">
