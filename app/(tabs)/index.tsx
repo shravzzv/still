@@ -3,6 +3,7 @@ import EmptyTasksState from '@/components/empty-tasks-state'
 import TaskRow from '@/components/task-row'
 import { Screen } from '@/components/ui/screen'
 import type { Task } from '@/types/task'
+import * as Crypto from 'expo-crypto'
 import { useNavigation } from 'expo-router'
 import { useLayoutEffect, useState } from 'react'
 import { FlatList, View } from 'react-native'
@@ -24,18 +25,40 @@ export default function Page() {
   const navigation = useNavigation()
 
   const toggleComplete = (id: string) => {
+    const now = new Date().toISOString()
+
     setTasks((prev) =>
-      prev.map((task) =>
-        task.id === id ? { ...task, completed: !task.completed } : task,
-      ),
+      prev.map((task) => {
+        if (task.id !== id) return task
+        const nextCompleted = !task.completed
+
+        return {
+          ...task,
+          completed: nextCompleted,
+          completedAt: nextCompleted ? now : undefined,
+        }
+      }),
     )
+  }
+
+  const addTask = (title: string) => {
+    const now = new Date().toISOString()
+
+    const newTask: Task = {
+      id: Crypto.randomUUID(),
+      title,
+      completed: false,
+      createdAt: now,
+    }
+
+    setTasks((prev) => [...prev, newTask])
   }
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
         <View className="mr-4">
-          <AddTaskAction />
+          <AddTaskAction onSubmit={addTask} />
         </View>
       ),
     })

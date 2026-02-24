@@ -5,16 +5,22 @@ import { Modal, TextInput, View } from 'react-native'
 import { Button } from './ui/button'
 import { Text } from './ui/text'
 
-export default function AddTaskAction() {
+interface AddTaskActionProps {
+  onSubmit: (title: string) => void
+}
+
+export default function AddTaskAction({ onSubmit }: AddTaskActionProps) {
   const [text, setText] = useState<string>('')
   const { colors, colorScheme } = useThemeContext()
   const [showModal, setShowModal] = useState(false)
 
   const handleSubmit = () => {
     const value = text.trim()
-    setShowModal(false)
-    console.log(value)
+    if (!value) return
+
+    onSubmit(value)
     setText('')
+    setShowModal(false)
   }
 
   return (
