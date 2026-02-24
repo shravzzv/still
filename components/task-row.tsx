@@ -22,6 +22,7 @@ export default function TaskRow({
     <Pressable
       className="flex-row items-center gap-4 rounded-xl bg-surface-elevated p-4 dark:bg-surface-elevated-dark"
       onLongPress={onEdit}
+      testID="task-row"
     >
       <Button
         variant="ghost"
@@ -47,6 +48,7 @@ export default function TaskRow({
             className="shrink-0 cursor-pointer p-0"
             accessibilityRole="button"
             onPress={onEdit}
+            testID="edit-button"
           >
             <Pen color={colors.surfaceForeground} size={20} />
           </Button>
