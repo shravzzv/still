@@ -17,6 +17,8 @@ const mockedTask: Task = {
 
 const toggleCompleteMock = jest.fn()
 const onEditMock = jest.fn()
+const onDeleteMock = jest.fn()
+const onLongPressMock = jest.fn()
 
 const renderTaskRow = () => {
   return render(
@@ -24,6 +26,8 @@ const renderTaskRow = () => {
       task={mockedTask}
       toggleComplete={toggleCompleteMock}
       onEdit={onEditMock}
+      onDelete={onDeleteMock}
+      onLongPress={onLongPressMock}
     />,
   )
 }
@@ -55,13 +59,13 @@ describe('TaskRow', () => {
     expect(toggleCompleteMock).toHaveBeenCalled()
   })
 
-  it('calls onEdit on long press', () => {
+  it('calls onLongPress on long press', () => {
     const { getByTestId } = renderTaskRow()
     const taskRow = getByTestId('task-row')
 
     fireEvent(taskRow, 'longPress')
 
-    expect(onEditMock).toHaveBeenCalled()
+    expect(onLongPressMock).toHaveBeenCalled()
   })
 
   it('renders an edit icon button only on web', () => {

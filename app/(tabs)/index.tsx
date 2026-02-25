@@ -3,7 +3,9 @@ import EmptyTasksState from '@/components/empty-tasks-state'
 import TaskModal from '@/components/task-modal'
 import TaskRow from '@/components/task-row'
 import { Screen } from '@/components/ui/screen'
+import { useThemeContext } from '@/providers/theme-provider'
 import type { Task } from '@/types/task'
+import { useActionSheet } from '@expo/react-native-action-sheet'
 import * as Crypto from 'expo-crypto'
 import { useNavigation } from 'expo-router'
 import { useCallback, useLayoutEffect, useState } from 'react'
@@ -26,6 +28,8 @@ export default function Page() {
   const [showModal, setShowModal] = useState<boolean>(false)
   const [editingTaskId, setEditingTaskId] = useState<string | null>(null)
   const navigation = useNavigation()
+  const { showActionSheetWithOptions } = useActionSheet()
+  const { colors } = useThemeContext()
 
   const toggleComplete = (id: string) => {
     const now = new Date().toISOString()
@@ -57,6 +61,10 @@ export default function Page() {
     setTasks((prev) => [...prev, newTask])
   }
 
+  const deleteTask = (id: string) => {
+    setTasks((prev) => prev.filter((task) => task.id !== id))
+  }
+
   const editTitle = (id: string, title: string) => {
     setTasks((prev) =>
       prev.map((task) => (task.id === id ? { ...task, title } : task)),
@@ -82,6 +90,34 @@ export default function Page() {
     closeModal()
   }
 
+  const openTaskActions = (task: Task) => {
+    showActionSheetWithOptions(
+      {
+        options: ['Edit task', 'Delete task', 'Cancel'],
+        title: task.title,
+        cancelButtonIndex: 2,
+        destructiveButtonIndex: 1,
+
+        tintColor: colors.primary,
+        destructiveColor: colors.destructive,
+
+        textStyle: { color: colors.surfaceForeground },
+        titleTextStyle: { color: colors.muted, fontSize: 12 },
+
+        containerStyle: {
+          borderTopRightRadius: 16,
+          borderTopLeftRadius: 16,
+          paddingBottom: 12,
+          backgroundColor: colors.surface,
+        },
+      },
+      (index) => {
+        if (index === 0) openModal(task.id)
+        if (index === 1) deleteTask(task.id)
+      },
+    )
+  }
+
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
@@ -100,11 +136,13 @@ export default function Page() {
         ListEmptyComponent={<EmptyTasksState />}
         data={tasks}
         keyExtractor={(item) => item.id}
-        renderItem={(task) => (
+        renderItem={({ item }) => (
           <TaskRow
-            task={task.item}
-            toggleComplete={() => toggleComplete(task.item.id)}
-            onEdit={() => openModal(task.item.id)}
+            task={item}
+            toggleComplete={() => toggleComplete(item.id)}
+            onEdit={() => openModal(item.id)}
+            onDelete={() => deleteTask(item.id)}
+            onLongPress={() => openTaskActions(item)}
           />
         )}
       />
