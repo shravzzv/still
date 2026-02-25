@@ -1,14 +1,15 @@
 import AddTaskAction from '@/components/add-task-action'
 import EmptyTasksState from '@/components/empty-tasks-state'
+import TaskModal from '@/components/task-modal'
 import TaskRow from '@/components/task-row'
 import { Screen } from '@/components/ui/screen'
 import type { Task } from '@/types/task'
 import * as Crypto from 'expo-crypto'
 import { useNavigation } from 'expo-router'
-import { useLayoutEffect, useState } from 'react'
+import { useCallback, useLayoutEffect, useState } from 'react'
 import { FlatList, View } from 'react-native'
 
-const intialState: Task[] = [
+const initialState: Task[] = [
   ...Array.from({ length: 0 }, (_, i) => ({
     id: `temp-${i}`,
     title: `Task ${i + 1}: Check if scrolling is smooth`,
@@ -21,7 +22,9 @@ const intialState: Task[] = [
 ]
 
 export default function Page() {
-  const [tasks, setTasks] = useState<Task[]>(intialState)
+  const [tasks, setTasks] = useState<Task[]>(initialState)
+  const [showModal, setShowModal] = useState<boolean>(false)
+  const [editingTaskId, setEditingTaskId] = useState<string | null>(null)
   const navigation = useNavigation()
 
   const toggleComplete = (id: string) => {
@@ -54,15 +57,40 @@ export default function Page() {
     setTasks((prev) => [...prev, newTask])
   }
 
+  const editTitle = (id: string, title: string) => {
+    setTasks((prev) =>
+      prev.map((task) => (task.id === id ? { ...task, title } : task)),
+    )
+  }
+
+  const openModal = useCallback((taskId?: string) => {
+    setEditingTaskId(taskId ?? null)
+    setShowModal(true)
+  }, [])
+
+  const closeModal = () => setShowModal(false)
+
+  const submitModal = (title: string) => {
+    if (editingTaskId) {
+      editTitle(editingTaskId, title)
+      setEditingTaskId(null)
+      closeModal()
+      return
+    }
+
+    addTask(title)
+    closeModal()
+  }
+
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
         <View className="mr-4">
-          <AddTaskAction onSubmit={addTask} />
+          <AddTaskAction openModal={() => openModal()} disabled={showModal} />
         </View>
       ),
     })
-  }, [navigation])
+  }, [navigation, openModal, showModal])
 
   return (
     <Screen>
@@ -76,8 +104,18 @@ export default function Page() {
           <TaskRow
             task={task.item}
             toggleComplete={() => toggleComplete(task.item.id)}
+            onEdit={() => openModal(task.item.id)}
           />
         )}
+      />
+
+      <TaskModal
+        showModal={showModal}
+        onSubmit={(value) => submitModal(value)}
+        closeModal={closeModal}
+        taskTitle={
+          tasks.find((task) => task.id === editingTaskId)?.title ?? null
+        }
       />
     </Screen>
   )
