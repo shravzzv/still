@@ -83,7 +83,12 @@ export default function TaskModal({
               </Text>
             </Button>
 
-            <Button onPress={handleSubmit} accessibilityRole="button">
+            <Button
+              onPress={handleSubmit}
+              accessibilityRole="button"
+              accessibilityLabel="submit"
+              disabled={!text.trim()}
+            >
               <Text className="text-primary-foreground dark:text-primary-foreground-dark">
                 Submit
               </Text>

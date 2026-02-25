@@ -9,7 +9,7 @@ import { useNavigation } from 'expo-router'
 import { useCallback, useLayoutEffect, useState } from 'react'
 import { FlatList, View } from 'react-native'
 
-const intialState: Task[] = [
+const initialState: Task[] = [
   ...Array.from({ length: 0 }, (_, i) => ({
     id: `temp-${i}`,
     title: `Task ${i + 1}: Check if scrolling is smooth`,
@@ -22,7 +22,7 @@ const intialState: Task[] = [
 ]
 
 export default function Page() {
-  const [tasks, setTasks] = useState<Task[]>(intialState)
+  const [tasks, setTasks] = useState<Task[]>(initialState)
   const [showModal, setShowModal] = useState<boolean>(false)
   const [editingTaskId, setEditingTaskId] = useState<string | null>(null)
   const navigation = useNavigation()
