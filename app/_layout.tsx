@@ -6,6 +6,7 @@ import {
   Inter_900Black,
   useFonts,
 } from '@expo-google-fonts/inter'
+import { ActionSheetProvider } from '@expo/react-native-action-sheet'
 import { Stack } from 'expo-router'
 import * as SplashScreen from 'expo-splash-screen'
 import { useColorScheme } from 'nativewind'
@@ -34,19 +35,21 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider>
-      <View
-        className={colorScheme === 'dark' ? 'dark' : ''}
-        style={{ flex: 1 }}
-      >
-        <Stack>
-          <Stack.Screen
-            name="(tabs)"
-            options={{
-              headerShown: false,
-            }}
-          />
-        </Stack>
-      </View>
+      <ActionSheetProvider>
+        <View
+          className={colorScheme === 'dark' ? 'dark' : ''}
+          style={{ flex: 1 }}
+        >
+          <Stack>
+            <Stack.Screen
+              name="(tabs)"
+              options={{
+                headerShown: false,
+              }}
+            />
+          </Stack>
+        </View>
+      </ActionSheetProvider>
     </ThemeProvider>
   )
 }
