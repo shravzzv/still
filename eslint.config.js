@@ -71,6 +71,7 @@ module.exports = defineConfig([
           patterns: ['@/app/*'],
         },
       ],
+      'import/no-default-export': 'error',
     },
   },
 
