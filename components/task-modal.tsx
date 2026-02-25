@@ -48,7 +48,7 @@ export function TaskModal({
       >
         <View className="w-full max-w-sm items-stretch gap-4 rounded-xl border bg-surface px-4 py-2 dark:bg-surface-dark">
           <View className="flex-row items-center justify-between">
-            <Text className="font-semibold">
+            <Text className="font-medium">
               {taskTitle ? 'Edit' : 'Add'} a task
             </Text>
 

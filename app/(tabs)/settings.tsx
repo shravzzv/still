@@ -7,7 +7,7 @@ export default function Page() {
     <Screen>
       <ThemeToggle />
 
-      <Text className="mt-auto text-center text-xs">
+      <Text className="mt-auto text-center text-xs text-muted dark:text-muted-dark">
         &copy; Still {new Date().getFullYear()}
       </Text>
     </Screen>
