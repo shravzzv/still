@@ -6,30 +6,57 @@ import { Screen } from '@/components/ui/screen'
 import { useThemeContext } from '@/providers/theme-provider'
 import type { Task } from '@/types/task'
 import { useActionSheet } from '@expo/react-native-action-sheet'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import * as Crypto from 'expo-crypto'
 import { useNavigation } from 'expo-router'
-import { useCallback, useLayoutEffect, useState } from 'react'
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react'
 import { FlatList, View } from 'react-native'
 
-const initialState: Task[] = [
-  ...Array.from({ length: 0 }, (_, i) => ({
-    id: `temp-${i}`,
-    title: `Task ${i + 1}: Check if scrolling is smooth`,
-    completed: i % 3 === 0,
-    createdAt: '',
-  })),
-  { id: '1', title: 'Breathe', completed: false, createdAt: '' },
-  { id: '2', title: 'Drink water', completed: true, createdAt: '' },
-  { id: '3', title: 'Step outside', completed: false, createdAt: '' },
-]
+const STORAGE_KEY = 'still:tasks'
 
 export default function Page() {
-  const [tasks, setTasks] = useState<Task[]>(initialState)
+  const [tasks, setTasks] = useState<Task[]>([])
   const [showModal, setShowModal] = useState<boolean>(false)
   const [editingTaskId, setEditingTaskId] = useState<string | null>(null)
   const navigation = useNavigation()
   const { showActionSheetWithOptions } = useActionSheet()
   const { colors } = useThemeContext()
+  const hydrationRef = useRef<boolean>(false)
+
+  useEffect(() => {
+    const hydrate = async () => {
+      const prev = await AsyncStorage.getItem(STORAGE_KEY)
+
+      if (prev) {
+        try {
+          setTasks(JSON.parse(prev))
+        } catch (error) {
+          console.warn('Failed to parse stored tasks', error)
+          setTasks([])
+        }
+      }
+
+      hydrationRef.current = true
+    }
+
+    hydrate()
+  }, [])
+
+  useEffect(() => {
+    if (!hydrationRef.current) return
+
+    const sync = async () => {
+      await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(tasks))
+    }
+
+    sync()
+  }, [tasks])
 
   const toggleComplete = (id: string) => {
     const now = new Date().toISOString()
