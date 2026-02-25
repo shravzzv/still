@@ -159,8 +159,12 @@ export default function Page() {
     <Screen>
       <FlatList
         className="w-full rounded-xl"
-        contentContainerClassName="w-full mx-auto max-w-2xl flex flex-col gap-2 rounded-xl"
-        ListEmptyComponent={<EmptyTasksState />}
+        contentContainerClassName="w-full mx-auto max-w-2xl gap-2 rounded-xl flex-1"
+        ListEmptyComponent={() => (
+          <View className="flex-1 items-center justify-center">
+            <EmptyTasksState />
+          </View>
+        )}
         data={tasks}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
