@@ -12,7 +12,7 @@
     "lint:ci": "expo lint",
     "format": "prettier . --write",
     "format:ci": "prettier . --check",
-    "test": "jest --verbose",
+    "test": "jest",
     "test:ci": "jest",
     "test:cov": "jest --coverage",
     "test:watch": "jest --watchAll",
