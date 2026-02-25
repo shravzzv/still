@@ -1,4 +1,4 @@
-import ThemeToggle from '@/components/theme-toggle'
+import { ThemeToggle } from '@/components/theme-toggle'
 import { useThemeContext } from '@/providers/theme-provider'
 import { fireEvent, render } from '@testing-library/react-native'
 

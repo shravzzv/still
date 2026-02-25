@@ -1,4 +1,4 @@
-import TaskModal from '@/components/task-modal'
+import { TaskModal } from '@/components/task-modal'
 import { useThemeContext } from '@/providers/theme-provider'
 import { fireEvent, render } from '@testing-library/react-native'
 

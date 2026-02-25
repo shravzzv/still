@@ -12,7 +12,7 @@ interface TaskModalProps {
   closeModal: () => void
 }
 
-export default function TaskModal({
+export function TaskModal({
   showModal,
   taskTitle,
   closeModal,

@@ -1,4 +1,4 @@
-import ThemeToggle from '@/components/theme-toggle'
+import { ThemeToggle } from '@/components/theme-toggle'
 import { Screen } from '@/components/ui/screen'
 import { Text } from '@/components/ui/text'
 
