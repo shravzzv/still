@@ -74,6 +74,7 @@ export function TaskModal({
             onChangeText={setText}
             placeholder="What's on your mind?"
             autoFocus
+            maxLength={120}
             placeholderTextColor={colors.primary}
             multiline
             className="rounded-xl border-border bg-surface px-4 py-2 text-base text-surface-foreground dark:bg-surface-dark dark:text-surface-foreground-dark"
