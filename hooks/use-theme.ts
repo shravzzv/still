@@ -36,7 +36,11 @@ export function useTheme(): UseThemeResult {
   const colors = themes[colorScheme === 'dark' ? 'dark' : 'light']
 
   const updateTheme = async (theme: ThemeMode) => {
-    await AsyncStorage.setItem(STORAGE_KEY, theme)
+    try {
+      await AsyncStorage.setItem(STORAGE_KEY, theme)
+    } catch (error) {
+      console.warn('Updating theme in async storage failed', error)
+    }
     setTheme(theme)
     setColorScheme(theme)
   }
@@ -56,13 +60,17 @@ export function useTheme(): UseThemeResult {
     }
 
     const run = async () => {
-      const prev = await AsyncStorage.getItem(STORAGE_KEY)
+      try {
+        const prev = await AsyncStorage.getItem(STORAGE_KEY)
 
-      if (isValidTheme(prev)) {
-        setTheme(prev)
-        setColorScheme(prev)
-      } else {
-        setColorScheme(theme)
+        if (isValidTheme(prev)) {
+          setTheme(prev)
+          setColorScheme(prev)
+        } else {
+          setColorScheme(theme)
+        }
+      } catch (error) {
+        console.warn('Theme hydration from async storage failed', error)
       }
     }
 
