@@ -135,7 +135,7 @@ export default function Page() {
           borderTopRightRadius: 16,
           borderTopLeftRadius: 16,
           paddingBottom: 12,
-          backgroundColor: colors.surface,
+          backgroundColor: colors.surfaceElevated,
         },
       },
       (index) => {

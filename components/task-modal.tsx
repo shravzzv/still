@@ -46,7 +46,14 @@ export function TaskModal({
       <View
         className={`h-full w-full items-center justify-center px-8 backdrop-blur-sm ${colorScheme === 'dark' && 'dark'}`}
       >
-        <View className="w-full max-w-sm items-stretch gap-4 rounded-xl border bg-surface px-4 py-2 dark:bg-surface-dark">
+        <View
+          className="absolute inset-0"
+          style={{
+            backgroundColor:
+              colorScheme === 'dark' ? 'rgba(0,0,0,0.6)' : 'rgba(0,0,0, .2)',
+          }}
+        />
+        <View className="w-full max-w-sm items-stretch gap-4 rounded-xl bg-surface-elevated px-4 py-2 dark:bg-surface-elevated-dark">
           <View className="flex-row items-center justify-between">
             <Text className="font-medium">
               {taskTitle ? 'Edit' : 'Add'} a task
@@ -69,7 +76,7 @@ export function TaskModal({
             autoFocus
             placeholderTextColor={colors.primary}
             multiline
-            className="rounded-xl border-border bg-surface-elevated px-4 py-2 text-base text-primary dark:bg-surface-elevated-dark dark:text-primary-dark"
+            className="rounded-xl border-border bg-surface px-4 py-2 text-base text-surface-foreground dark:bg-surface-dark dark:text-surface-foreground-dark"
           />
 
           <View className="flex-row justify-end gap-2">
