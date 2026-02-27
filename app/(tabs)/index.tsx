@@ -21,28 +21,42 @@ import { FlatList, View } from 'react-native'
 const STORAGE_KEY = 'still:tasks'
 
 export default function Page() {
+  const navigation = useNavigation()
+  const hydrationRef = useRef<boolean>(false)
+  const { colors } = useThemeContext()
+  const { showActionSheetWithOptions } = useActionSheet()
+
   const [tasks, setTasks] = useState<Task[]>([])
   const [showModal, setShowModal] = useState<boolean>(false)
   const [editingTaskId, setEditingTaskId] = useState<string | null>(null)
-  const navigation = useNavigation()
-  const { showActionSheetWithOptions } = useActionSheet()
-  const { colors } = useThemeContext()
-  const hydrationRef = useRef<boolean>(false)
 
   useEffect(() => {
     const hydrate = async () => {
-      const prev = await AsyncStorage.getItem(STORAGE_KEY)
+      try {
+        const prev = await AsyncStorage.getItem(STORAGE_KEY)
 
-      if (prev) {
+        if (!prev) return
+        let parsed
+
         try {
-          setTasks(JSON.parse(prev))
-        } catch (error) {
-          console.warn('Failed to parse stored tasks', error)
-          setTasks([])
+          parsed = JSON.parse(prev)
+        } catch {
+          await AsyncStorage.removeItem(STORAGE_KEY)
+          throw Error('JSON malformed in task hydration from async storage')
         }
-      }
 
-      hydrationRef.current = true
+        if (!Array.isArray(parsed)) {
+          await AsyncStorage.removeItem(STORAGE_KEY)
+          throw Error('Stored tasks is not an array in async storage')
+        }
+
+        setTasks(parsed)
+      } catch (error) {
+        console.warn('Hydrating tasks from async storage failed', error)
+        setTasks([])
+      } finally {
+        hydrationRef.current = true
+      }
     }
 
     hydrate()
@@ -52,7 +66,11 @@ export default function Page() {
     if (!hydrationRef.current) return
 
     const sync = async () => {
-      await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(tasks))
+      try {
+        await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(tasks))
+      } catch (error) {
+        console.warn('Persisting tasks in async storage failed', error)
+      }
     }
 
     sync()
