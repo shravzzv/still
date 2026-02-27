@@ -21,13 +21,14 @@ import { FlatList, View } from 'react-native'
 const STORAGE_KEY = 'still:tasks'
 
 export default function Page() {
+  const navigation = useNavigation()
+  const hydrationRef = useRef<boolean>(false)
+  const { colors } = useThemeContext()
+  const { showActionSheetWithOptions } = useActionSheet()
+
   const [tasks, setTasks] = useState<Task[]>([])
   const [showModal, setShowModal] = useState<boolean>(false)
   const [editingTaskId, setEditingTaskId] = useState<string | null>(null)
-  const navigation = useNavigation()
-  const { showActionSheetWithOptions } = useActionSheet()
-  const { colors } = useThemeContext()
-  const hydrationRef = useRef<boolean>(false)
 
   useEffect(() => {
     const hydrate = async () => {
