@@ -10,7 +10,7 @@ const modes: { mode: ThemeMode; Icon: any }[] = [
   { mode: 'system', Icon: Monitor },
 ]
 
-export default function ThemeToggle() {
+export function ThemeToggle() {
   const { theme, updateTheme, colors } = useThemeContext()
 
   return (

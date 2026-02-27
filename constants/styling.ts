@@ -10,7 +10,7 @@ export const themes = {
   light: {
     surface: '#F6F4EF',
     surfaceForeground: '#111827',
-    surfaceElevated: 'rgba(111,129,150,0.12)',
+    surfaceElevated: '#FFFFFF',
     primary: '#111827',
     primaryForeground: '#FFFFFF',
     muted: '#6B7280',
@@ -22,7 +22,7 @@ export const themes = {
   dark: {
     surface: '#0B0B0C',
     surfaceForeground: '#F9FAFB',
-    surfaceElevated: 'rgba(143,162,183,0.16)',
+    surfaceElevated: '#3E403F',
     primary: '#F9FAFB',
     primaryForeground: '#0B0B0C',
     muted: '#9CA3AF',

@@ -13,7 +13,7 @@ interface TaskRowProps {
   onLongPress: () => void
 }
 
-export default function TaskRow({
+export function TaskRow({
   task,
   toggleComplete,
   onEdit,

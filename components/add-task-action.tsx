@@ -7,10 +7,7 @@ interface AddTaskActionProps {
   disabled: boolean
 }
 
-export default function AddTaskAction({
-  openModal,
-  disabled,
-}: AddTaskActionProps) {
+export function AddTaskAction({ openModal, disabled }: AddTaskActionProps) {
   const { colors } = useThemeContext()
 
   return (

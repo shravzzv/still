@@ -7,7 +7,7 @@ import { Pressable, PressableProps } from 'react-native'
  * Using CVA to manage the relationship between variant and size.
  */
 const buttonVariants = cva(
-  'items-center justify-center flex-row rounded-xl active:opacity-80 hover:opacity-80', // Base styles
+  'items-center justify-center flex-row rounded-xl active:opacity-80 hover:opacity-80 hover:cursor-pointer disabled:cursor-not-allowed disabled:opacity-50', // Base styles
   {
     variants: {
       variant: {

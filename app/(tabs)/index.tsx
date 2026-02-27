@@ -1,7 +1,7 @@
-import AddTaskAction from '@/components/add-task-action'
-import EmptyTasksState from '@/components/empty-tasks-state'
-import TaskModal from '@/components/task-modal'
-import TaskRow from '@/components/task-row'
+import { AddTaskAction } from '@/components/add-task-action'
+import { EmptyTasksState } from '@/components/empty-tasks-state'
+import { TaskModal } from '@/components/task-modal'
+import { TaskRow } from '@/components/task-row'
 import { Screen } from '@/components/ui/screen'
 import { useThemeContext } from '@/providers/theme-provider'
 import type { Task } from '@/types/task'
@@ -135,7 +135,7 @@ export default function Page() {
           borderTopRightRadius: 16,
           borderTopLeftRadius: 16,
           paddingBottom: 12,
-          backgroundColor: colors.surface,
+          backgroundColor: colors.surfaceElevated,
         },
       },
       (index) => {
@@ -159,8 +159,12 @@ export default function Page() {
     <Screen>
       <FlatList
         className="w-full rounded-xl"
-        contentContainerClassName="w-full mx-auto max-w-2xl flex flex-col gap-2 rounded-xl"
-        ListEmptyComponent={<EmptyTasksState />}
+        contentContainerClassName="w-full mx-auto max-w-2xl gap-2 rounded-xl flex-1"
+        ListEmptyComponent={() => (
+          <View className="flex-1 items-center justify-center">
+            <EmptyTasksState />
+          </View>
+        )}
         data={tasks}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (

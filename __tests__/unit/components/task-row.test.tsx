@@ -1,4 +1,4 @@
-import TaskRow from '@/components/task-row'
+import { TaskRow } from '@/components/task-row'
 import { useThemeContext } from '@/providers/theme-provider'
 import type { Task } from '@/types/task'
 import { fireEvent, render } from '@testing-library/react-native'
