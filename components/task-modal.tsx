@@ -2,6 +2,7 @@ import { useThemeContext } from '@/providers/theme-provider'
 import { X } from 'lucide-react-native'
 import { useEffect, useState } from 'react'
 import { Modal, TextInput, View } from 'react-native'
+import Animated, { FadeIn, FadeOut } from 'react-native-reanimated'
 import { Button } from './ui/button'
 import { Text } from './ui/text'
 
@@ -40,11 +41,11 @@ export function TaskModal({
       visible={showModal}
       backdropColor={colors.surface}
       onRequestClose={closeModal}
-      animationType="slide"
+      animationType="none"
       transparent
     >
       <View
-        className={`h-full w-full items-center justify-center px-8 backdrop-blur-sm ${colorScheme === 'dark' && 'dark'}`}
+        className={`h-full w-full justify-center backdrop-blur-sm ${colorScheme === 'dark' && 'dark'}`}
       >
         <View
           className="absolute inset-0"
@@ -53,56 +54,58 @@ export function TaskModal({
               colorScheme === 'dark' ? 'rgba(0,0,0,0.6)' : 'rgba(0,0,0, .2)',
           }}
         />
-        <View className="w-full max-w-sm items-stretch gap-4 rounded-xl bg-surface-elevated px-4 py-2 dark:bg-surface-elevated-dark">
-          <View className="flex-row items-center justify-between">
-            <Text className="font-medium">
-              {taskTitle ? 'Edit' : 'Add'} a task
-            </Text>
-
-            <Button
-              variant="ghost"
-              onPress={closeModal}
-              className="shrink-0 cursor-pointer p-0"
-              accessibilityRole="button"
-            >
-              <X color={colors.primary} size={24} />
-            </Button>
-          </View>
-
-          <TextInput
-            value={text}
-            onChangeText={setText}
-            placeholder="What's on your mind?"
-            autoFocus
-            maxLength={120}
-            placeholderTextColor={colors.primary}
-            multiline
-            className="rounded-xl border-border bg-surface px-4 py-2 text-base text-surface-foreground dark:bg-surface-dark dark:text-surface-foreground-dark"
-          />
-
-          <View className="flex-row justify-end gap-2">
-            <Button
-              onPress={closeModal}
-              variant="outline"
-              accessibilityRole="button"
-            >
-              <Text className="text-surface-foreground dark:text-surface-foreground-dark">
-                Cancel
+        <Animated.View entering={FadeIn} exiting={FadeOut}>
+          <View className="mx-auto w-full max-w-sm items-stretch gap-4 rounded-xl bg-surface-elevated px-4 py-2 dark:bg-surface-elevated-dark">
+            <View className="flex-row items-center justify-between">
+              <Text className="font-medium">
+                {taskTitle ? 'Edit' : 'Add'} a task
               </Text>
-            </Button>
 
-            <Button
-              onPress={handleSubmit}
-              accessibilityRole="button"
-              accessibilityLabel="submit"
-              disabled={!text.trim()}
-            >
-              <Text className="text-primary-foreground dark:text-primary-foreground-dark">
-                Submit
-              </Text>
-            </Button>
+              <Button
+                variant="ghost"
+                onPress={closeModal}
+                className="shrink-0 cursor-pointer p-0"
+                accessibilityRole="button"
+              >
+                <X color={colors.primary} size={24} />
+              </Button>
+            </View>
+
+            <TextInput
+              value={text}
+              onChangeText={setText}
+              placeholder="What's on your mind?"
+              autoFocus
+              maxLength={120}
+              placeholderTextColor={colors.primary}
+              multiline
+              className="rounded-xl border-border bg-surface px-4 py-2 text-base text-surface-foreground dark:bg-surface-dark dark:text-surface-foreground-dark"
+            />
+
+            <View className="flex-row justify-end gap-2">
+              <Button
+                onPress={closeModal}
+                variant="outline"
+                accessibilityRole="button"
+              >
+                <Text className="text-surface-foreground dark:text-surface-foreground-dark">
+                  Cancel
+                </Text>
+              </Button>
+
+              <Button
+                onPress={handleSubmit}
+                accessibilityRole="button"
+                accessibilityLabel="submit"
+                disabled={!text.trim()}
+              >
+                <Text className="text-primary-foreground dark:text-primary-foreground-dark">
+                  Submit
+                </Text>
+              </Button>
+            </View>
           </View>
-        </View>
+        </Animated.View>
       </View>
     </Modal>
   )
