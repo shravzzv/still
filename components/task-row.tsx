@@ -33,11 +33,20 @@ export function TaskRow({
         className="shrink-0 cursor-pointer p-0"
         onPress={toggleComplete}
         accessibilityRole="button"
+        testID="toggle-btn"
       >
         {task.completed ? (
-          <CircleCheckBig color={colors.surfaceForeground} size={24} />
+          <CircleCheckBig
+            color={colors.surfaceForeground}
+            size={24}
+            testID="completed-icon"
+          />
         ) : (
-          <Circle color={colors.surfaceForeground} size={24} />
+          <Circle
+            color={colors.surfaceForeground}
+            size={24}
+            testID="incomplete-icon"
+          />
         )}
       </Button>
 

@@ -1,4 +1,5 @@
 # ! requires Still's home screen already open on Expo go
+# ! with empty tasks state
 
 appId: ${APP_ID}
 ---
@@ -17,6 +18,18 @@ appId: ${APP_ID}
 
 # reading
 - assertVisible: 'arbitrary task'
+
+# toggling complete
+- assertVisible:
+    id: incomplete-icon
+- tapOn:
+    id: toggle-btn
+- assertVisible:
+    id: completed-icon
+- tapOn:
+    id: toggle-btn
+- assertVisible:
+    id: incomplete-icon
 
 # updating
 - longPressOn: 'arbitrary task'
