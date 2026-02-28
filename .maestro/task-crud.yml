@@ -1,0 +1,36 @@
+# ! requires Still's home screen already open on Expo go
+
+appId: ${APP_ID}
+---
+- assertVisible: 'Still' # Header
+- assertVisible: 'No tasks. Breathe.' # Empty state
+- assertVisible:
+    id: add-task-btn
+
+# creating
+- tapOn:
+    id: add-task-btn
+- assertVisible: 'Add a task'
+- inputText: 'arbitrary task'
+- tapOn:
+    text: 'Submit'
+
+# reading
+- assertVisible: 'arbitrary task'
+
+# updating
+- longPressOn: 'arbitrary task'
+- assertVisible: 'Edit task'
+- tapOn: 'Edit task'
+- assertVisible: 'Edit a task'
+- eraseText
+- inputText: 'updated arbitrary task'
+- tapOn: 'Submit'
+- assertVisible: 'updated arbitrary task'
+
+# deleting
+- longPressOn: 'updated arbitrary task'
+- assertVisible: 'Delete task'
+- tapOn: 'Delete task'
+- assertNotVisible: 'updated arbitrary task'
+- assertVisible: 'No tasks. Breathe.' # Empty state

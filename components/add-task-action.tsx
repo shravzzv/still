@@ -16,6 +16,7 @@ export function AddTaskAction({ openModal, disabled }: AddTaskActionProps) {
       onPress={openModal}
       accessibilityRole="button"
       disabled={disabled}
+      testID="add-task-btn"
     >
       <Plus color={colors.primaryForeground} size={24} />
     </Button>
