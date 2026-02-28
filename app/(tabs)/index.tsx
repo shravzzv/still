@@ -8,6 +8,7 @@ import type { Task } from '@/types/task'
 import { useActionSheet } from '@expo/react-native-action-sheet'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import * as Crypto from 'expo-crypto'
+import * as Haptics from 'expo-haptics'
 import { useNavigation } from 'expo-router'
 import {
   useCallback,
@@ -77,20 +78,27 @@ export default function Page() {
   }, [tasks])
 
   const toggleComplete = (id: string) => {
+    const task = tasks.find((t) => t.id === id)
+    if (!task) return
+
+    const nextCompleted = !task.completed
     const now = new Date().toISOString()
 
     setTasks((prev) =>
-      prev.map((task) => {
-        if (task.id !== id) return task
-        const nextCompleted = !task.completed
-
-        return {
-          ...task,
-          completed: nextCompleted,
-          completedAt: nextCompleted ? now : undefined,
-        }
-      }),
+      prev.map((t) =>
+        t.id === id
+          ? {
+              ...t,
+              completed: nextCompleted,
+              completedAt: nextCompleted ? now : undefined,
+            }
+          : t,
+      ),
     )
+
+    if (nextCompleted) {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+    }
   }
 
   const addTask = (title: string) => {
