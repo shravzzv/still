@@ -4,11 +4,13 @@
     "preview": {
       "distribution": "internal",
       "extends": "production",
-      "channel": "preview"
+      "channel": "preview",
+      "android": { "buildType": "apk" }
     },
     "production": {
       "node": "20.19.0",
-      "channel": "production"
+      "channel": "production",
+      "android": { "buildType": "apk" }
     },
     "development": {
       "extends": "production",
