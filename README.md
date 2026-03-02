@@ -1,21 +1,12 @@
 # Still
 
+> Status: Complete (v1.0.1)
+
 Still is a deliberately minimal todos app built with React Native and Expo.
 
 The project exists to internalize first-principles mobile fundamentals — layout, interaction, state, and local persistence — without the noise of features, metrics, or optimization pressure.
 
 This is a learning root, not a product.
-
-## Why this exists
-
-I want a clear mental model for React Native that I can reuse confidently in future projects.
-
-Still is intentionally small so that:
-
-- every UI decision is felt, not abstracted away
-- platform differences (RN vs web React) become obvious
-- the codebase stays calm and readable
-- “done” is reachable
 
 ## What Still is
 
@@ -74,3 +65,29 @@ Components are only extracted when visual or behavioral variation appears.
 - NativeWind
 - Jest (unit tests)
 - E2E testing (minimal, one happy path)
+
+## Release
+
+Still builds as a production Android APK via Expo EAS.
+
+To generate a release build: `eas build --platform android`
+
+To update the installed app:
+
+- Bump `expo.version` and `android.versionCode` in `app.json`
+- Bump `package.json.version`
+- Rebuild via EAS
+- Install the new `.apk` (Android upgrades in place)
+
+The current canonical release is tagged as `v1.0.1`.
+
+## Closure
+
+Still achieved its goal:
+
+- Internalize React Native fundamentals
+- Establish a reusable mental model for mobile layout and persistence
+- Ship a production build via EAS
+
+No additional features are planned.
+Future React Native work will continue in new projects.
