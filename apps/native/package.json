@@ -16,7 +16,9 @@
     "test:ci": "jest",
     "test:cov": "jest --coverage",
     "test:watch": "jest --watchAll",
-    "e2e": "cross-env APP_ID=host.exp.exponent maestro test .maestro"
+    "e2e": "cross-env APP_ID=host.exp.exponent maestro test .maestro",
+    "deploy:web:prev": "expo export --platform web && eas deploy",
+    "deploy:web:prod": "expo export --platform web && eas deploy --prod"
   },
   "dependencies": {
     "@expo-google-fonts/inter": "^0.4.2",
