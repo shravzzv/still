@@ -1,12 +1,20 @@
 # CI should never modify files
-name: CI
+name: CI Native
 permissions:
   contents: read
 
 on:
-  pull_request:
   push:
     branches: [main]
+    paths:
+      - 'apps/native/**'
+      - 'packages/**'
+
+  pull_request:
+    branches: [main]
+    paths:
+      - 'apps/native/**'
+      - 'packages/**'
 
 jobs:
   quality:
