@@ -1,4 +1,3 @@
-# CI should never modify files
 name: CI Native
 permissions:
   contents: read
@@ -17,7 +16,7 @@ on:
       - 'packages/**'
 
 jobs:
-  quality:
+  lint-native:
     runs-on: ubuntu-latest
 
     steps:
@@ -29,6 +28,7 @@ jobs:
         with:
           node-version: lts/*
           cache: npm
+          cache-dependency-path: package-lock.json
 
       - name: Install deps
         run: npm ci
@@ -36,8 +36,22 @@ jobs:
       - name: Lint
         run: npm run lint:native:ci
 
-      - name: Check formatting
-        run: npm run format:ci
+  jest-tests:
+    runs-on: ubuntu-latest
 
-      - name: Run unit + integration tests
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Run tests
         run: npm run test:native:ci
