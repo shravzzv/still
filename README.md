@@ -1,93 +1,46 @@
 # Still
 
-> Status: Complete (v1.0.1)
+Still is a deliberately minimal, cross-platform todo application designed to explore how the same product can be built and delivered across mobile, web, and desktop platforms.
 
-Still is a deliberately minimal todos app built with React Native and Expo.
+The project emphasizes simplicity, local-first task management, and a consistent user experience while serving as a practical vehicle for learning platform-specific development patterns.
 
-The project exists to internalize first-principles mobile fundamentals — layout, interaction, state, and local persistence — without the noise of features, metrics, or optimization pressure.
+## Applications
 
-This is a learning root, not a product.
+| Platform | Technology          | Location              |
+| -------- | ------------------- | --------------------- |
+| Mobile   | React Native + Expo | `apps/native`         |
+| Web      | Next.js             | `apps/web`            |
+| Desktop  | Electron            | Built from `apps/web` |
 
-## What Still is
+## Technology Stack
 
-- A single-screen todos app
-- Local-only persistence
-- Calm, touch-first interactions
-- Minimal visual language
-- No accounts, sync, or productivity mechanics
-
-## What Still is not
-
-- Not a task manager
-- Not a productivity system
-- Not a habit tracker
-- Not a framework or boilerplate
-- Not built for scale or distribution
-
-If you’re looking for features, this is the wrong repo.
-
-## Scope
-
-- Single primary screen (task list)
-- One flow for adding a task (modal)
-- Local-only persistence
-- System-driven light/dark theme
-- No settings screen
-
-## Design philosophy
-
-- Do less
-- Completion is relief
-- Empty is success
-- Nothing begs for attention
-
-The UI is intentionally quiet.
-
-## Design system (minimal)
-
-Still uses a minimal, token-based design system expressed through NativeWind classes.
-
-There is no component library.
-
-Consistency is achieved through:
-
-- a small, fixed color palette (surface, primary text, muted text, accent)
-- a repeated spacing scale
-- a limited set of text styles (title, body, meta)
-
-Components are only extracted when visual or behavioral variation appears.
-
-## Tech stack
-
+- TypeScript
+- React
 - React Native
 - Expo
-- TypeScript
-- NativeWind
-- Jest (unit tests)
-- E2E testing (minimal, one happy path)
+- Next.js
+- Electron
 
-## Release
+## Objectives
 
-Still builds as a production Android APK via Expo EAS.
+- Build and maintain a single product across multiple platforms.
+- Develop a practical understanding of mobile, web, and desktop application architecture.
+- Learn how platform capabilities influence application design and implementation.
+- Explore packaging and distribution workflows for production applications.
 
-To generate a release build: `eas build --platform android`
+## Repository Structure
 
-To update the installed app:
+```txt
+still/
+├── apps/
+│   ├── native/     # React Native + Expo application
+│   └── web/        # Next.js application and Electron integration
+├── packages/       # Shared packages (when needed)
+└── package.json
+```
 
-- Bump `expo.version` and `android.versionCode` in `app.json`
-- Bump `package.json.version`
-- Rebuild via EAS
-- Install the new `.apk` (Android upgrades in place)
+## Status
 
-The current canonical release is tagged as `v1.0.1`.
+Active development.
 
-## Closure
-
-Still achieved its goal:
-
-- Internalize React Native fundamentals
-- Establish a reusable mental model for mobile layout and persistence
-- Ship a production build via EAS
-
-No additional features are planned.
-Future React Native work will continue in new projects.
+The repository currently contains the mobile implementation and ongoing work toward web and desktop versions of Still.
