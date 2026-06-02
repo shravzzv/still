@@ -9,6 +9,11 @@
       "name": "native",
       "rootPath": "apps/native",
       "jestCommandLine": "npm test -w still-native --"
+    },
+    {
+      "name": "web",
+      "rootPath": "apps/web",
+      "jestCommandLine": "npm test -w still-web --"
     }
   ]
 }

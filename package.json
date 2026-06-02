@@ -12,6 +12,8 @@
     "lint:native": "npm run lint -w still-native",
     "lint:native:ci": "npm run lint:ci -w still-native",
     "format": "prettier . --write",
-    "format:ci": "prettier . --check"
+    "format:ci": "prettier . --check",
+    "dev:web": "npm run dev -w still-web",
+    "lint:web": "npm run lint -w still-web"
   }
 }
