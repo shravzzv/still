@@ -3,5 +3,12 @@
     "source.fixAll": "explicit",
     "source.organizeImports": "explicit",
     "source.sortMembers": "explicit"
-  }
+  },
+  "jest.virtualFolders": [
+    {
+      "name": "native",
+      "rootPath": "apps/native",
+      "jestCommandLine": "npm test -w still-native --"
+    }
+  ]
 }

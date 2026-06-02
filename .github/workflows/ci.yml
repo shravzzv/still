@@ -26,10 +26,10 @@ jobs:
         run: npm ci
 
       - name: Lint
-        run: npm run lint:ci
+        run: npm run lint:native:ci
 
       - name: Check formatting
         run: npm run format:ci
 
       - name: Run unit + integration tests
-        run: npm run test:ci
+        run: npm run test:native:ci
