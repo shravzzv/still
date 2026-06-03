@@ -76,7 +76,8 @@
     "jest-expo": "^54.0.17",
     "prettier": "^3.8.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
-    "typescript": "~5.9.2"
+    "typescript": "~5.9.2",
+    "react-test-renderer": "19.1.0"
   },
   "private": true,
   "jest": {
