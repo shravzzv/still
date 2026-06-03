@@ -6,7 +6,7 @@ import { ThemeToggle } from '@/components/theme-toggle'
 import { useTasks } from '@/hooks/use-tasks'
 
 export default function Page() {
-  const { tasks, addTask, deleteTask, toggleCompleteTask, editTitle } =
+  const { tasks, addTask, deleteTask, toggleCompleteTask, editTaskTitle } =
     useTasks()
 
   return (
@@ -23,9 +23,15 @@ export default function Page() {
             key={task.id}
             toggleComplete={() => toggleCompleteTask(task.id)}
             deleteTask={() => deleteTask(task.id)}
-            editTitle={editTitle}
+            editTitle={editTaskTitle}
           />
         ))}
+
+        {tasks.length === 0 && (
+          <p className="text-muted-foreground text-center text-sm">
+            No tasks. Breathe.
+          </p>
+        )}
       </section>
     </div>
   )

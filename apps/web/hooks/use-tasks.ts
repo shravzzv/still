@@ -1,8 +1,7 @@
 'use client'
 
-import { data } from '@/data/tasks'
 import type { Task } from '@still/types/task'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
 interface UseTasksResult {
@@ -29,7 +28,7 @@ interface UseTasksResult {
   /**
    * Updates the title of an existing task.
    */
-  editTitle: (id: string, title: string) => void
+  editTaskTitle: (id: string, title: string) => void
 }
 
 /**
@@ -42,7 +41,37 @@ interface UseTasksResult {
  * @returns The current task collection and task management operations.
  */
 export const useTasks = (): UseTasksResult => {
-  const [tasks, setTasks] = useState<Task[]>(data)
+  const [tasks, setTasks] = useState<Task[]>([])
+  const hasHydratedRef = useRef(false)
+
+  /**
+   * Hydrate tasks from local storage on mount.
+   */
+  useEffect(() => {
+    const hydrate = () => {
+      try {
+        const existingTasks = localStorage.getItem('tasks')
+        if (!existingTasks) return
+
+        setTasks(JSON.parse(existingTasks))
+      } catch (error) {
+        console.error('Error hydrating tasks', error)
+      } finally {
+        hasHydratedRef.current = true
+      }
+    }
+
+    if (!hasHydratedRef.current) hydrate()
+  }, [])
+
+  /**
+   * Sync tasks state with local storage on every change.
+   * Race condition with hydration is guarded by a gate.
+   */
+  useEffect(() => {
+    if (!hasHydratedRef.current) return
+    localStorage.setItem('tasks', JSON.stringify(tasks))
+  }, [tasks])
 
   const addTask = (title: string) =>
     setTasks((prev) => [
@@ -75,7 +104,7 @@ export const useTasks = (): UseTasksResult => {
     )
   }
 
-  const editTitle = (id: string, title: string) => {
+  const editTaskTitle = (id: string, title: string) => {
     setTasks((prev) =>
       prev.map((task) => (task.id === id ? { ...task, title } : task)),
     )
@@ -86,6 +115,6 @@ export const useTasks = (): UseTasksResult => {
     addTask,
     deleteTask,
     toggleCompleteTask,
-    editTitle,
+    editTaskTitle,
   }
 }
