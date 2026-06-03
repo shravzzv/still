@@ -6,7 +6,8 @@ import { ThemeToggle } from '@/components/theme-toggle'
 import { useTasks } from '@/hooks/use-tasks'
 
 export default function Page() {
-  const { tasks, addTask, deleteTask, toggleCompleteTask } = useTasks()
+  const { tasks, addTask, deleteTask, toggleCompleteTask, editTitle } =
+    useTasks()
 
   return (
     <div className="space-y-6 py-8">
@@ -22,6 +23,7 @@ export default function Page() {
             key={task.id}
             toggleComplete={() => toggleCompleteTask(task.id)}
             deleteTask={() => deleteTask(task.id)}
+            editTitle={editTitle}
           />
         ))}
       </section>

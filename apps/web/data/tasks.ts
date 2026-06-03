@@ -36,34 +36,4 @@ export const data: Task[] = [
     createdAt: '2026-06-02T13:00:00.000Z',
     completedAt: '2026-06-02T13:35:00.000Z',
   },
-  {
-    id: 'task-6',
-    title: 'Refactor global typography scale using NativeWind tokens',
-    completed: false,
-    createdAt: '2026-06-02T14:15:00.000Z',
-  },
-  {
-    id: 'task-7',
-    title: 'Draft landing page copy focusing on value metrics and clarity',
-    completed: false,
-    createdAt: '2026-06-02T15:30:00.000Z',
-  },
-  {
-    id: 'task-8',
-    title: 'Audit local storage persistence logic for edge-case memory leaks',
-    completed: false,
-    createdAt: '2026-06-02T16:45:00.000Z',
-  },
-  {
-    id: 'task-9',
-    title: 'Read 5 pages of evolutionary psychology or philosophy',
-    completed: false,
-    createdAt: '2026-06-02T19:00:00.000Z',
-  },
-  {
-    id: 'task-10',
-    title: 'Evening reflection: Disconnect devices and breathe',
-    completed: false,
-    createdAt: '2026-06-02T20:30:00.000Z',
-  },
 ]

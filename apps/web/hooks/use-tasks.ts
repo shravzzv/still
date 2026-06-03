@@ -27,9 +27,9 @@ interface UseTasksResult {
   toggleCompleteTask: (id: string) => void
 
   /**
-   * Updates one or more properties of an existing task.
+   * Updates the title of an existing task.
    */
-  editTask: (id: string, update: Partial<Task>) => void
+  editTitle: (id: string, title: string) => void
 }
 
 /**
@@ -75,17 +75,17 @@ export const useTasks = (): UseTasksResult => {
     )
   }
 
-  const editTask = (id: string, update: Partial<Task>) => {
+  const editTitle = (id: string, title: string) => {
     setTasks((prev) =>
-      prev.map((task) => (task.id === id ? { ...task, ...update } : task)),
+      prev.map((task) => (task.id === id ? { ...task, title } : task)),
     )
   }
 
   return {
     tasks,
     addTask,
-    toggleCompleteTask,
     deleteTask,
-    editTask,
+    toggleCompleteTask,
+    editTitle,
   }
 }

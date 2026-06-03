@@ -2,19 +2,22 @@
 
 import { cn } from '@/lib/utils'
 import { Task } from '@still/types/task'
-import { Circle, CircleCheck, Pen, Trash } from 'lucide-react'
+import { Circle, CircleCheck, Trash } from 'lucide-react'
+import EditTask from './edit-task'
 import { Button } from './ui/button'
 
 interface TaskRowProps {
   task: Task
   toggleComplete: () => void
   deleteTask: () => void
+  editTitle: (id: string, title: string) => void
 }
 
 export default function TaskRow({
   task,
   toggleComplete,
   deleteTask,
+  editTitle,
 }: TaskRowProps) {
   return (
     <div className="bg-accent flex flex-row items-center justify-between gap-2 rounded-xl px-2 py-1">
@@ -41,9 +44,10 @@ export default function TaskRow({
       </p>
 
       <div>
-        <Button variant="ghost" size="icon-sm" className="cursor-pointer">
-          <Pen />
-        </Button>
+        <EditTask
+          title={task.title}
+          submitTask={(title: string) => editTitle(task.id, title)}
+        />
 
         <Button
           variant="ghost"

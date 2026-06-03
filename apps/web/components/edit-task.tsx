@@ -11,13 +11,14 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Plus } from 'lucide-react'
+import { Pen } from 'lucide-react'
 import { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import * as z from 'zod'
 import { Button } from './ui/button'
 import { Field, FieldError, FieldLabel } from './ui/field'
 import { Input } from './ui/input'
+
 const formSchema = z.object({
   title: z
     .string()
@@ -28,40 +29,38 @@ const formSchema = z.object({
 
 type FormSchema = z.infer<typeof formSchema>
 
-interface AddTaskProps {
+interface EditTask {
   submitTask: (title: string) => void
+  title: string
 }
 
-export default function AddTask({ submitTask }: AddTaskProps) {
+export default function EditTask({ submitTask, title }: EditTask) {
   const [open, setOpen] = useState(false)
 
   const { reset, handleSubmit, control } = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      title: '',
-    },
+    defaultValues: { title },
   })
 
   const onSubmit = (data: FormSchema) => {
     if (!data.title.trim()) return
 
     submitTask(data.title)
+    reset({ title: data.title })
     setOpen(false)
-    reset()
   }
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="cursor-pointer">
-          <Plus />
-          Add
+        <Button variant="ghost" size="icon-sm" className="cursor-pointer">
+          <Pen />
         </Button>
       </DialogTrigger>
 
       <DialogContent onInteractOutside={(e) => e.preventDefault()}>
         <DialogHeader>
-          <DialogTitle>Add a task</DialogTitle>
+          <DialogTitle>Edit task</DialogTitle>
 
           <DialogDescription>
             Give a suitable title. Press submit when you&apos;re done.
