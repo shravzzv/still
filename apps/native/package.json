@@ -16,7 +16,9 @@
     "test:ci": "jest",
     "test:cov": "jest --coverage",
     "test:watch": "jest --watchAll",
-    "e2e": "cross-env APP_ID=host.exp.exponent maestro test .maestro"
+    "e2e": "cross-env APP_ID=host.exp.exponent maestro test .maestro",
+    "deploy:web:prev": "expo export --platform web && eas deploy",
+    "deploy:web:prod": "expo export --platform web && eas deploy --prod"
   },
   "dependencies": {
     "@expo-google-fonts/inter": "^0.4.2",
@@ -74,7 +76,8 @@
     "jest-expo": "^54.0.17",
     "prettier": "^3.8.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
-    "typescript": "~5.9.2"
+    "typescript": "~5.9.2",
+    "react-test-renderer": "19.1.0"
   },
   "private": true,
   "jest": {

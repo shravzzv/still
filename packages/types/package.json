@@ -1,0 +1,9 @@
+{
+  "name": "@still/types",
+  "exports": {
+    "./*": {
+      "types": "./src/*.ts",
+      "import": "./src/*.ts"
+    }
+  }
+}
