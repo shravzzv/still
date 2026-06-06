@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
-    "electron": "electron electron/main.js"
+    "lint": "eslint"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
