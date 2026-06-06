@@ -37,7 +37,12 @@ interface EditTask {
 export default function EditTask({ submitTask, title }: EditTask) {
   const [open, setOpen] = useState(false)
 
-  const { reset, handleSubmit, control } = useForm<FormSchema>({
+  const {
+    reset,
+    handleSubmit,
+    control,
+    formState: { isDirty, isSubmitting },
+  } = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: { title },
   })
@@ -102,7 +107,11 @@ export default function EditTask({ submitTask, title }: EditTask) {
               </Button>
             </DialogClose>
 
-            <Button type="submit" className="cursor-pointer">
+            <Button
+              type="submit"
+              className="cursor-pointer"
+              disabled={!isDirty || isSubmitting}
+            >
               Submit
             </Button>
           </DialogFooter>
