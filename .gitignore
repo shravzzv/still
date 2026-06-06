@@ -48,7 +48,6 @@ package-lock.json.lock
 .DS_Store
 Thumbs.db
 Desktop.ini
-.vscode/
 .idea/
 *.sublime-project
 *.sublime-workspace
