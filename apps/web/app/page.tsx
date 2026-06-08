@@ -1,34 +1,21 @@
 'use client'
 
 import AddTask from '@/components/add-task'
+import PWAInstallButton from '@/components/pwa-install-button'
 import TaskRow from '@/components/task-row'
 import { ThemeToggle } from '@/components/theme-toggle'
-import { Button } from '@/components/ui/button'
-import { usePwaInstall } from '@/hooks/use-pwa-install'
 import { useTasks } from '@/hooks/use-tasks'
-import { Download } from 'lucide-react'
 
 export default function Page() {
   const { tasks, addTask, deleteTask, toggleCompleteTask, editTaskTitle } =
     useTasks()
-  const { canInstall, install } = usePwaInstall()
 
   return (
     <div className="space-y-6 py-8">
       <div className="flex flex-row items-center justify-center gap-2">
         <AddTask submitTask={addTask} />
         <ThemeToggle />
-
-        {canInstall && (
-          <Button
-            size="icon"
-            variant="secondary"
-            className="cursor-pointer"
-            onClick={install}
-          >
-            <Download />
-          </Button>
-        )}
+        <PWAInstallButton />
       </div>
 
       <section className="mx-auto w-full max-w-2xl space-y-2 px-4">
