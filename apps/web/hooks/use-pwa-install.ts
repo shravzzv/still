@@ -19,17 +19,18 @@ export function usePwaInstall() {
       setInstallPrompt(e as BeforeInstallPromptEvent)
     }
 
-    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
+    const handleInstalled = () => setInstallPrompt(null)
 
-    window.addEventListener('appinstalled', () => {
-      setInstallPrompt(null)
-    })
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
+    window.addEventListener('appinstalled', handleInstalled)
 
     return () => {
       window.removeEventListener(
         'beforeinstallprompt',
         handleBeforeInstallPrompt,
       )
+
+      window.removeEventListener('appinstalled', handleInstalled)
     }
   }, [])
 
