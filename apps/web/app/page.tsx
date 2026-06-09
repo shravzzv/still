@@ -1,6 +1,7 @@
 'use client'
 
 import AddTask from '@/components/add-task'
+import PWAInstallButton from '@/components/pwa-install-button'
 import TaskRow from '@/components/task-row'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { useTasks } from '@/hooks/use-tasks'
@@ -14,6 +15,7 @@ export default function Page() {
       <div className="flex flex-row items-center justify-center gap-2">
         <AddTask submitTask={addTask} />
         <ThemeToggle />
+        <PWAInstallButton />
       </div>
 
       <section className="mx-auto w-full max-w-2xl space-y-2 px-4">

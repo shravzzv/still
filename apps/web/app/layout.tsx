@@ -1,3 +1,4 @@
+import ServiceWorker from '@/components/service-worker'
 import { cn } from '@/lib/utils'
 import { ThemeProvider } from '@/providers/theme-provider'
 import { Analytics } from '@vercel/analytics/next'
@@ -33,6 +34,7 @@ export default function RootLayout({
         >
           {children}
         </ThemeProvider>
+        <ServiceWorker />
         <Analytics />
       </body>
     </html>
