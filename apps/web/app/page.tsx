@@ -2,13 +2,19 @@
 
 import AddTask from '@/components/add-task'
 import PWAInstallButton from '@/components/pwa-install-button'
-import TaskRow from '@/components/task-row'
+import TasksSection from '@/components/tasks-section'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { useTasks } from '@/hooks/use-tasks'
 
 export default function Page() {
-  const { tasks, addTask, deleteTask, toggleCompleteTask, editTaskTitle } =
-    useTasks()
+  const {
+    tasks,
+    isLoading,
+    addTask,
+    deleteTask,
+    editTaskTitle,
+    toggleCompleteTask,
+  } = useTasks()
 
   return (
     <div className="space-y-6 py-8">
@@ -18,23 +24,13 @@ export default function Page() {
         <PWAInstallButton />
       </div>
 
-      <section className="mx-auto w-full max-w-2xl space-y-2 px-4">
-        {tasks.map((task) => (
-          <TaskRow
-            task={task}
-            key={task.id}
-            toggleComplete={() => toggleCompleteTask(task.id)}
-            deleteTask={() => deleteTask(task.id)}
-            editTitle={editTaskTitle}
-          />
-        ))}
-
-        {tasks.length === 0 && (
-          <p className="text-muted-foreground text-center text-sm">
-            No tasks. Breathe.
-          </p>
-        )}
-      </section>
+      <TasksSection
+        tasks={tasks}
+        isLoading={isLoading}
+        deleteTask={deleteTask}
+        editTaskTitle={editTaskTitle}
+        toggleCompleteTask={toggleCompleteTask}
+      />
     </div>
   )
 }
