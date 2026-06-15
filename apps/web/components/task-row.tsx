@@ -1,5 +1,6 @@
 'use client'
 
+import { UseTasksResult } from '@/hooks/use-tasks'
 import { cn } from '@/lib/utils'
 import { Task } from '@still/types/task'
 import { Circle, CircleCheck, Trash } from 'lucide-react'
@@ -8,9 +9,9 @@ import { Button } from './ui/button'
 
 interface TaskRowProps {
   task: Task
-  toggleComplete: () => void
-  deleteTask: () => void
-  editTitle: (id: string, title: string) => void
+  deleteTask: () => Promise<void>
+  toggleComplete: () => Promise<void>
+  editTitle: UseTasksResult['editTaskTitle']
 }
 
 export default function TaskRow({
